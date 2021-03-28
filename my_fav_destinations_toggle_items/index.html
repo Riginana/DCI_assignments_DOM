@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">My Favourite Destinations</h1>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-action active">Rome</li>
+            <li class="list-group-item list-group-item-action">Athens</li>
+            <li class="list-group-item list-group-item-action">Bangkok</li>
+            <li class="list-group-item list-group-item-action">Amsterdam</li>
+            <li class="list-group-item list-group-item-action">Gala Gonone</li>
+        </ul>
+        <ul class="myList pt-3 list-group rounded">
+            <li class="list-group-item list-group-item-info">A simple info list group item</li>
+        </ul>
+        <div class="row justify-content-end">
+            <button type="button" class="show btn btn-primary mb-3 m-3">Hide
+                destinations</button>
+        </div>
+
+
+    </div>
+
+    <script>
+        let btn = document.querySelector('.btn');
+        btn.addEventListener('click', handleButton);
+
+        function handleButton() {
+            let list = document.querySelector('.list-group');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                btn.innerText = 'Hide destinations';
+            } else {
+                list.style.display = 'none';
+                btn.innerText = 'Show destinations';
+            }
+        }
+
+        let list = document.querySelector('.list-group');
+        let myList = document.querySelector('.myList');
+        myList.style.display = "none";
+        const liElements = Array.from(list.getElementsByClassName('list-group-item'));
+        liElements.forEach(value => {
+            value.addEventListener("click", selectedFunction => {
+                liElements.forEach(li => {
+                    if (li.classList.contains("active")) {
+                        li.classList.remove("active");
+                    }
+                })
+                value.classList.add("active");
+                myList.style.display = "block";
+                myList.children[0].innerText = `You selected ${value.innerText}`;
+
+            });
+        });
+    </script>
+</body>
+
+</html>
