@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Random Color Generator</title>
+</head>
+
+<body>
+    <h1>Random Color Generator</h1>
+    <br>
+    <input type="text">
+    <input type="submit" value=" + Add colors ">
+    <section>
+    </section>
+    <script>
+        let spanX;
+        let sectionElement = document.querySelector("section");
+        let divElement = document.querySelector("div");
+        let a = document.querySelector("input[type='submit']")
+        a.onclick = function () {
+            let inputNum = document.querySelector("input[type='text']");
+            for (let i = 0; i < Number(inputNum.value); i++) {
+                const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                const neuDiv = document.createElement("div");
+                const neuSpan = document.createElement("span");
+                const neuP = document.createElement("p");
+                neuDiv.appendChild(neuSpan);
+                neuDiv.appendChild(neuP);
+                neuDiv.children[0].innerText = "X";
+                neuDiv.children[1].innerText = randomColor;
+                neuDiv.children[1].style.backgroundColor = randomColor;
+                sectionElement.appendChild(neuDiv);
+
+                spanX = document.querySelectorAll("span")
+                Array.from(spanX).forEach(value => {
+                    value.onclick = function (e) {
+                        e.target.parentElement.remove();
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
