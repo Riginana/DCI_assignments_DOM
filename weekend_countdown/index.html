@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Welcome to Weekend Countdown!</h1>
+    <p id="changeText">Please enter your name 😊</p>
+
+    <input type="text" id="inputField">
+    <input type="submit" id="go" value="GO">
+
+    <script>
+        let goElement = document.querySelector('#go');
+        let eingabeElement = document.querySelector('#inputField');
+        let changedElement = document.querySelector('#changeText');
+        const date = new Date();
+
+        let tag = date.getDay();
+        const left = 5 - tag;
+        let wochenende;
+        if (left >= 0 && left < 5) {
+            wochenende = `Only ${left} days left until weekend`;
+        } else {
+            wochenende = `Hi Wochenende!`;
+        }
+
+        switch (tag) {
+            case 0:
+                tag = 'Sunday'
+                break;
+            case 1:
+                tag = 'Monday'
+                break;
+            case 2:
+                tag = 'Tuesday'
+                break;
+            case 3:
+                tag = 'Wednesday'
+                break;
+            case 4:
+                tag = 'Thursday'
+                break;
+            case 5:
+                tag = 'Friday'
+                break;
+            case 6:
+                tag = 'Saturday'
+                break;
+        }
+
+        eingabeElement.onchange = (event) => {
+            changedElement.innerText = `Hello ${event.target.value}. Today is ${tag}. ${wochenende}`;
+        }
+    </script>
+</body>
+
+</html>
